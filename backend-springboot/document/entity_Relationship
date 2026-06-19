@@ -1,0 +1,108 @@
+Mối quan hệ giữa các thực thể (Entity Relationships)
+1. User (Người dùng)
+    One-to-Many với Address (Địa chỉ):
+        Một người dùng có thể có nhiều địa chỉ.
+    Many-to-Many với Coupon (Mã giảm giá):
+        Một người dùng có thể sử dụng nhiều mã giảm giá, và một mã giảm giá có thể được nhiều người dùng sử dụng.
+    One-to-One với Cart (Giỏ hàng):
+        Một người dùng có một giỏ hàng.
+    One-to-Many với Order (Đơn hàng):
+        Một người dùng có thể có nhiều đơn hàng.
+    One-to-Many với Review (Đánh giá):
+        Một người dùng có thể viết nhiều đánh giá.
+    One-to-Many với Transaction (Giao dịch):
+        Một người dùng có thể có nhiều giao dịch.
+    One-to-One với Wishlist (Danh sách yêu thích):
+        Mỗi người dùng có một wishlist.
+
+2. Address (Địa chỉ)
+    Many-to-One với User:
+        Mỗi địa chỉ thuộc về một người dùng.
+    Many-to-One với Order:
+        Mỗi đơn hàng có một địa chỉ giao hàng.
+
+3. Cart (Giỏ hàng)
+    One-to-One với User:
+        Mỗi người dùng có một giỏ hàng.
+    One-to-Many với CartItem:
+        Một giỏ hàng có thể chứa nhiều sản phẩm (cart item).
+
+4. CartItem (Chi tiết giỏ hàng)
+    Many-to-One với Cart (Giỏ hàng):
+        Mỗi cart item thuộc về một giỏ hàng.
+    Many-to-One với Product (Sản phẩm):
+        Mỗi cart item đại diện cho một sản phẩm.
+
+5. Product (Sản phẩm)
+    Many-to-One với Category (Danh mục):
+        Mỗi sản phẩm thuộc một danh mục.
+    Many-to-One với Seller (Người bán):
+        Mỗi sản phẩm được bán bởi một người bán.
+    One-to-Many với Review (Đánh giá):
+        Một sản phẩm có thể có nhiều đánh giá.
+
+6. Category (Danh mục)
+    Many-to-One với chính nó (Self-reference):
+        Một danh mục có thể có danh mục cha (dùng cho danh mục con).
+
+7. Coupon (Mã giảm giá)
+    Many-to-Many với User (Người dùng):
+        Một mã giảm giá có thể được nhiều người dùng sử dụng.
+
+8. Order (Đơn hàng)
+    Many-to-One với User:
+        Mỗi đơn hàng thuộc về một người dùng.
+    One-to-Many với OrderItem:
+        Một đơn hàng có thể có nhiều sản phẩm (order item).
+    Many-to-One với Address:
+        Mỗi đơn hàng có một địa chỉ giao hàng.
+
+9. OrderItem (Chi tiết đơn hàng)
+    Many-to-One với Order:
+        Mỗi order item thuộc về một đơn hàng.
+    Many-to-One với Product:
+        Mỗi order item tương ứng với một sản phẩm.
+
+10. PaymentOrder (Đơn thanh toán)
+    Many-to-One với User:
+        Một đơn thanh toán thuộc về một người dùng.
+    One-to-Many với Order:
+        Một đơn thanh toán có thể chứa nhiều đơn hàng.
+
+11. Seller (Người bán)
+    One-to-One với Address:
+        Mỗi người bán có một địa chỉ lấy hàng.
+    One-to-Many với Product:
+        Một người bán có thể bán nhiều sản phẩm.
+    One-to-Many với Transaction:
+        Một người bán có thể tham gia nhiều giao dịch.
+
+12. Transaction (Giao dịch)
+    Many-to-One với User:
+        Một giao dịch liên kết với một người dùng.
+    Many-to-One với Seller:
+        Một giao dịch liên kết với một người bán.
+    One-to-One với Order:
+        Một giao dịch tương ứng với một đơn hàng.
+
+13. Review (Đánh giá)
+    Many-to-One với Product:
+        Mỗi đánh giá thuộc về một sản phẩm.
+    Many-to-One với User:
+        Mỗi đánh giá được viết bởi một người dùng.
+
+14. Wishlist (Danh sách yêu thích)
+    One-to-One với User:
+        Mỗi người dùng có một wishlist.
+    Many-to-Many với Product:
+        Một wishlist có thể chứa nhiều sản phẩm.
+
+15. VerificationCode (Mã xác thực)
+    One-to-One với User:
+        Mỗi mã xác thực gắn với một người dùng.
+    One-to-One với Seller:
+        Mỗi mã xác thực có thể gắn với một người bán.
+
+16. SellerReport (Báo cáo người bán)
+    One-to-One với Seller:
+        Mỗi báo cáo tương ứng với một người bán.

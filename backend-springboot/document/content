@@ -1,0 +1,45 @@
+🛠️ Công nghệ sử dụng
+Backend:
+    Spring Boot
+    MySQL
+    Spring Security
+    Java Mail Sender
+    JWT
+
+Frontend:
+    React
+    TypeScript
+    Redux Toolkit
+    MUI
+    Tailwind CSS
+    React Chart
+    Formik
+    Yup
+    React Router DOM
+    Axios
+
+Thanh toán:
+    Razorpay (cho người dùng Ấn Độ)
+    Stripe (quốc tế)
+
+👤 Tính năng cho khách hàng
+    Chatbot hỗ trợ: trả lời câu hỏi về đơn hàng, sản phẩm, giỏ hàng
+    Quản lý sản phẩm: xem danh sách, lọc theo danh mục/giá, xem chi tiết
+    Giỏ hàng: thêm, sửa, xóa sản phẩm, áp dụng mã giảm giá
+    Lịch sử đơn hàng: xem và hủy đơn
+    Quản lý tài khoản: hồ sơ, cài đặt, theo dõi đơn hàng
+    Đánh giá & nhận xét sản phẩm
+    Wishlist: lưu sản phẩm để mua sau
+
+🧑‍💼 Tính năng cho người bán
+    Dashboard: xem doanh thu, biểu đồ, báo cáo
+    Quản lý sản phẩm: thêm, sửa, xóa sản phẩm
+    Quản lý đơn hàng
+    Quản lý tài khoản người bán
+
+🛡️ Tính năng cho Admin
+    Dashboard quản trị toàn hệ thống
+    Quản lý người bán (duyệt / khóa tài khoản)
+    Quản lý mã giảm giá
+    Quản lý nội dung trang chủ
+    Quản lý chương trình khuyến mãi

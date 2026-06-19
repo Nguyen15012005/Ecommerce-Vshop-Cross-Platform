@@ -1,0 +1,12 @@
+tao project
+npm create vite@latest frontend
+
+install tailwind
+npm install tailwindcss @tailwindcss/vite
+
+cấu hình tailwind.config.js
+
+install mui & mui icon
+npm install @mui/material@5 @mui/icons-material@5 @emotion/react @emotion/styled
+npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
+npm install @reduxjs/toolkit react-redux

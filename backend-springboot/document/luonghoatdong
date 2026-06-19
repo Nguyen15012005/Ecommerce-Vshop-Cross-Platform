@@ -1,0 +1,20 @@
+Luồng FE -> BE :Client → Controller → Service → Repository → Database
+                                   ↑
+                              Entity
+
+Luồng BE -> FE :Database → Repository → Service → Controller → Client
+
+
+lớp repository: tương tác trực tiếp với database, thực hiện các thao tác CRUD (Create, Read, Update, Delete) và các truy vấn phức tạp khác. Nó là lớp trung gian giữa service và database, giúp tách biệt logic kinh doanh khỏi logic truy cập dữ liệu.
+lớp service: chứa logic kinh doanh của ứng dụng, xử lý các yêu cầu từ controller, thực hiện các phép tính, kiểm tra điều kiện và gọi các phương thức của repository để truy xuất hoặc cập nhật dữ liệu. Nó giúp tách biệt logic kinh doanh khỏi logic trình bày, làm cho mã nguồn dễ bảo trì và mở rộng hơn.
+lớp controller: nhận các yêu cầu từ client, xử lý chúng và trả về phản hồi. Nó là lớp trung gian giữa client và service, giúp tách biệt logic trình bày khỏi logic kinh doanh. Controller thường sẽ nhận dữ liệu từ client, gọi các phương thức của service để xử lý dữ liệu và sau đó trả về kết quả cho client.
+Ví dụ về luồng hoạt động:
+1. Client gửi một yêu cầu HTTP POST để tạo một người dùng mới.
+2. Controller nhận yêu cầu, trích xuất dữ liệu từ yêu cầu và gọi phương thức của service để tạo người dùng mới.
+3. Service nhận dữ liệu từ controller, thực hiện các kiểm tra và logic kinh doanh cần thiết, sau đó gọi phương thức của repository để lưu người dùng mới vào database.
+4. Repository thực hiện thao tác lưu dữ liệu vào database và trả về kết quả cho service.
+5. Service nhận kết quả từ repository, có thể thực hiện thêm các xử lý nếu cần thiết, và trả về kết quả cho controller.
+6. Controller nhận kết quả từ service và trả về phản hồi HTTP cho client, có thể là một thông báo thành công hoặc lỗi   tùy thuộc vào kết quả của quá trình xử lý.
+```java
+@RestController
+@RequestMapping("/users")

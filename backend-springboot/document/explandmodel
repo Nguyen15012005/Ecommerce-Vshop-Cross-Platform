@@ -1,0 +1,306 @@
+GIẢI THÍCH CÁC CLASS MODEL TRONG PROJECT
+
+1) Address
+File: model/Address.java
+- Lưu thông tin địa chỉ giao hàng hoặc địa chỉ liên quan đến người dùng/seller.
+- Các trường:
+  + id: mã định danh địa chỉ
+  + name: tên người nhận
+  + locality: khu vực, phường/xã
+  + address: số nhà, đường
+  + city: thành phố
+  + state: tỉnh/thành hoặc quận/huyện tùy cách dùng
+  + pinCode: mã bưu điện
+  + phone: số điện thoại liên hệ
+- Dùng cho giao hàng và lưu địa chỉ cá nhân.
+
+2) BankDetails
+File: model/BankDetails.java
+- Lưu thông tin ngân hàng của seller.
+- Các trường:
+  + accountNumber: số tài khoản
+  + accountHolderName: tên chủ tài khoản
+  + ifscCode: mã ngân hàng/chi nhánh
+- Đây là @Embeddable nên không tạo bảng riêng, mà nhúng vào Seller.
+
+3) BusinessDetails
+File: model/BusinessDetails.java
+- Lưu thông tin doanh nghiệp/cửa hàng của seller.
+- Các trường:
+  + businessName: tên shop/doanh nghiệp
+  + businessAddress: địa chỉ kinh doanh
+  + businessPhone: số điện thoại cửa hàng
+  + businessEmail: email cửa hàng
+  + logo: ảnh logo
+  + banner: ảnh banner
+- Cũng là @Embeddable, dùng chung trong bảng Seller.
+
+4) Cart
+File: model/Cart.java
+- Lưu giỏ hàng của một user.
+- Các trường:
+  + id: mã giỏ hàng
+  + user: chủ giỏ hàng
+  + cartItems: danh sách sản phẩm trong giỏ
+  + totalSellingPrice: tổng tiền sau giảm giá
+  + totalItem: tổng số lượng sản phẩm
+  + totalMrpPrice: tổng giá gốc
+  + discount: tổng tiền giảm
+  + couponCode: mã coupon đã áp dụng
+- Dùng để quản lý mua hàng trước khi đặt order.
+
+5) CartItem
+File: model/CartItem.java
+- Lưu từng sản phẩm nằm trong giỏ hàng.
+- Các trường:
+  + id: mã item
+  + cart: giỏ hàng chứa item này
+  + product: sản phẩm được chọn
+  + size: size sản phẩm
+  + quantity: số lượng
+  + mrpPrice: giá gốc của item
+  + sellingPrice: giá bán sau giảm
+  + userId: id người dùng sở hữu
+- Đây là từng dòng sản phẩm trong giỏ hàng.
+
+6) Category
+File: model/Category.java
+- Lưu danh mục sản phẩm theo dạng cây nhiều cấp.
+- Các trường:
+  + id: mã danh mục
+  + name: tên danh mục hiển thị
+  + categoryId: mã danh mục riêng
+  + parentCategory: danh mục cha
+  + level: cấp độ danh mục (1, 2, 3...)
+  + product: danh sách sản phẩm thuộc danh mục này
+- Dùng để phân loại sản phẩm theo nhóm lớn/nhỏ.
+
+7) Coupon
+File: model/Coupon.java
+- Lưu thông tin mã giảm giá.
+- Các trường:
+  + id: mã coupon
+  + code: mã giảm giá
+  + discountPercentage: phần trăm giảm giá
+  + validityStartDate: ngày bắt đầu
+  + validityEndDate: ngày hết hạn
+  + minimumOrderValue: giá trị đơn tối thiểu
+  + isActive: trạng thái còn hoạt động hay không
+  + usedByUsers: danh sách user đã dùng coupon
+- Dùng để áp mã khuyến mãi cho đơn hàng.
+
+8) Deal
+File: model/Deal.java
+- Lưu thông tin khuyến mãi của một home category.
+- Các trường:
+  + id: mã deal
+  + discount: mức giảm giá
+  + category: danh mục được gắn deal
+- Thường dùng cho trang home để hiển thị deal nổi bật.
+
+9) Home
+File: model/Home.java
+- Đây không phải entity, mà là class dùng để trả dữ liệu cho trang chủ.
+- Các trường:
+  + grid: danh sách category dạng lưới
+  + shopByCategories: danh mục để mua theo nhóm
+  + electricCategories: danh mục điện máy
+  + dealCategories: danh mục có deal
+  + deal: danh sách deal
+- Dùng để build dữ liệu UI trang home.
+
+10) HomeCategory
+File: model/HomeCategory.java
+- Lưu danh mục hiển thị trên trang chủ.
+- Các trường:
+  + id: mã
+  + name: tên danh mục
+  + image: ảnh đại diện
+  + categoryId: mã danh mục
+  + section: vị trí hiển thị trên trang home
+- Dùng riêng cho phần giao diện trang chủ.
+
+11) Order
+File: model/Order.java
+- Lưu thông tin một đơn hàng sau khi checkout.
+- Các trường:
+  + id: mã đơn
+  + orderId: mã đơn hàng business
+  + user: người đặt hàng
+  + sellerId: id của seller liên quan
+  + orderItems: danh sách sản phẩm trong đơn
+  + shippingAddress: địa chỉ giao hàng
+  + paymentDetails: thông tin thanh toán
+  + totalMrpPrice: tổng giá gốc
+  + totalSellingPrice: tổng tiền khách phải trả
+  + discount: tổng tiền giảm
+  + orderStatus: trạng thái đơn hàng
+  + totalItem: tổng số lượng item
+  + paymentStatus: trạng thái thanh toán
+  + orderDate: ngày tạo đơn
+  + deliverDate: ngày dự kiến giao
+- Đây là entity trung tâm của phần bán hàng.
+
+12) OrderItem
+File: model/OrderItem.java
+- Lưu từng dòng sản phẩm trong đơn hàng.
+- Các trường:
+  + id: mã order item
+  + order: đơn hàng cha
+  + product: sản phẩm
+  + size: size đã đặt
+  + quantity: số lượng
+  + mrpPrice: giá gốc
+  + sellingPrice: giá bán
+  + userId: id người mua
+- Một order có thể có nhiều order item.
+
+13) PaymentDetails
+File: model/PaymentDetails.java
+- Lưu chi tiết thanh toán của một order.
+- Các trường:
+  + paymentId: mã thanh toán
+  + razorpayPaymentLinkId: id link thanh toán Razorpay
+  + razorpayPaymentLinkReferenceId: mã tham chiếu
+  + razorpayPaymentLinkStatus: trạng thái link thanh toán
+  + razorpayPaymentId: mã giao dịch Razorpay
+  + status: trạng thái thanh toán chung
+- Đây là embeddable, nhúng vào Order.
+
+14) PaymentOrder
+File: model/PaymentOrder.java
+- Lưu thông tin yêu cầu thanh toán cho một hoặc nhiều đơn hàng.
+- Các trường:
+  + id: mã payment order
+  + amount: số tiền cần thanh toán
+  + status: trạng thái payment order
+  + paymentMethod: phương thức thanh toán
+  + paymentLinkId: id link thanh toán
+  + user: người thanh toán
+  + orders: danh sách đơn hàng liên quan
+- Dùng để quản lý luồng thanh toán tổng quát.
+
+15) Product
+File: model/Product.java
+- Lưu thông tin sản phẩm bán trong shop.
+- Các trường:
+  + id: mã sản phẩm
+  + title: tên sản phẩm
+  + description: mô tả
+  + mrpPrice: giá gốc
+  + sellingPrice: giá bán
+  + discountPercent: % giảm giá
+  + quantity: số lượng tồn kho
+  + color: màu sắc
+  + images: danh sách ảnh sản phẩm
+  + numRatings: số lượng đánh giá
+  + category: danh mục của sản phẩm
+  + seller: người bán
+  + createdAt: thời gian tạo
+  + sizes: các size
+  + reviews: danh sách review
+- Đây là bảng chính cho hàng hóa.
+
+16) Review
+File: model/Review.java
+- Lưu đánh giá của khách hàng cho sản phẩm.
+- Các trường:
+  + id: mã review
+  + reviewText: nội dung đánh giá
+  + rating: điểm số
+  + productImages: ảnh người dùng đăng kèm review
+  + product: sản phẩm được đánh giá
+  + user: người viết review
+  + createdAt: thời gian đánh giá
+- Dùng để hiển thị feedback cho sản phẩm.
+
+17) Seller
+File: model/Seller.java
+- Lưu thông tin người bán/shop.
+- Các trường:
+  + id: mã seller
+  + sellerName: tên người bán
+  + phone: số điện thoại
+  + email: email
+  + password: mật khẩu
+  + businessDetails: thông tin kinh doanh
+  + bankDetails: thông tin ngân hàng
+  + pickupAddress: địa chỉ lấy hàng
+  + GSTIN: mã thuế
+  + role: vai trò seller
+  + isEmailVerified: đã xác minh email hay chưa
+  + accountStatus: trạng thái tài khoản
+  + products: danh sách sản phẩm của seller
+- Đây là bảng thông tin shop/người bán.
+
+18) SellerReport
+File: model/SellerReport.java
+- Lưu báo cáo thống kê doanh thu và hiệu quả bán hàng của seller.
+- Các trường:
+  + id: mã report
+  + seller: seller được thống kê
+  + totalEarnings: tổng doanh thu
+  + totalSales: tổng tiền bán hàng
+  + totalRefunds: tổng tiền hoàn
+  + totalTax: tổng thuế
+  + netEarnings: lợi nhuận ròng
+  + totalOrders: tổng số đơn
+  + canceledOrders: số đơn hủy
+  + totalTransactions: tổng giao dịch
+- Dùng cho dashboard seller.
+
+19) Transaction
+File: model/Transaction.java
+- Lưu lịch sử giao dịch.
+- Các trường:
+  + id: mã giao dịch
+  + customer: khách hàng
+  + order: đơn hàng tương ứng
+  + seller: người bán
+  + date: thời gian giao dịch
+- Dùng để theo dõi thanh toán/đối soát.
+
+20) User
+File: model/User.java
+- Lưu thông tin người dùng mua hàng.
+- Các trường:
+  + id: mã user
+  + password: mật khẩu
+  + email: email đăng nhập
+  + fullName: họ tên
+  + phone: số điện thoại
+  + role: vai trò user
+  + addresses: danh sách địa chỉ
+  + usedCoupons: danh sách coupon đã dùng
+- Đây là tài khoản khách hàng hoặc admin.
+
+21) VerificationCode
+File: model/VerificationCode.java
+- Lưu mã OTP xác minh email/tài khoản.
+- Các trường:
+  + id: mã bản ghi
+  + otp: mã xác thực
+  + email: email nhận OTP
+  + user: user liên quan
+  + seller: seller liên quan
+- Dùng cho bước xác minh đăng ký hoặc đăng nhập.
+
+22) Wishlist
+File: model/Wishlist.java
+- Lưu danh sách sản phẩm yêu thích của user.
+- Các trường:
+  + id: mã wishlist
+  + user: chủ wishlist
+  + products: danh sách sản phẩm được lưu
+- Dùng cho chức năng “yêu thích / lưu sau”.
+
+TỔNG KẾT
+- Các class trên chủ yếu chia thành 4 nhóm:
+  + Người dùng và seller: User, Seller, VerificationCode, SellerReport
+  + Sản phẩm và phân loại: Product, Category, Review, HomeCategory, Deal
+  + Giỏ hàng và đơn hàng: Cart, CartItem, Order, OrderItem, Wishlist
+  + Thanh toán: PaymentOrder, PaymentDetails, Transaction, Coupon
+
+- Một số class là entity tạo bảng trong DB.
+- Một số class là embeddable, nghĩa là nhúng vào bảng khác.
+- Một số class là model tạm để trả dữ liệu cho frontend, ví dụ Home.

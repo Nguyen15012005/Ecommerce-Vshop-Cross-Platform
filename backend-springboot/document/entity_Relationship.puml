@@ -1,0 +1,104 @@
+@startuml
+' ================= STYLE =================
+skinparam linetype ortho
+skinparam shadowing false
+skinparam packageStyle rectangle
+
+' ================= GROUP: USER SIDE =================
+package "User Domain" {
+  entity User
+  entity Address
+  entity Wishlist
+  entity Coupon
+  entity Review
+  entity Transaction
+}
+
+' ================= GROUP: SHOPPING =================
+package "Shopping" {
+  entity Cart
+  entity CartItem
+  entity "Order" as OrderEntity
+  entity OrderItem
+  entity PaymentOrder
+}
+
+' ================= GROUP: PRODUCT =================
+package "Product Domain" {
+  entity Product
+  entity Category
+}
+
+' ================= GROUP: SELLER =================
+package "Seller Domain" {
+  entity Seller
+  entity SellerReport
+}
+
+' ================= OTHER =================
+entity VerificationCode
+
+' ================= RELATIONSHIPS =================
+
+' USER
+User ||--o{ Address
+User }o--o{ Coupon
+User ||--|| Cart
+User ||--o{ OrderEntity
+User ||--o{ Review
+User ||--o{ Transaction
+User ||--|| Wishlist
+
+' ADDRESS
+Address }o--|| OrderEntity
+
+' CART
+Cart ||--o{ CartItem
+
+' CART ITEM
+CartItem }o--|| Product
+
+' PRODUCT
+Product }o--|| Category
+Product }o--|| Seller
+Product ||--o{ Review
+
+' CATEGORY (SELF)
+Category }o--|| Category : parent
+
+' ORDER
+OrderEntity ||--o{ OrderItem
+OrderEntity }o--|| Address
+
+' ORDER ITEM
+OrderItem }o--|| Product
+
+' PAYMENT
+PaymentOrder }o--|| User
+PaymentOrder ||--o{ OrderEntity
+
+' SELLER
+Seller ||--|| Address
+Seller ||--o{ Product
+Seller ||--o{ Transaction
+
+' TRANSACTION
+Transaction }o--|| User
+Transaction }o--|| Seller
+Transaction ||--|| OrderEntity
+
+' REVIEW
+Review }o--|| Product
+Review }o--|| User
+
+' WISHLIST
+Wishlist }o--o{ Product
+
+' VERIFY
+VerificationCode ||--|| User
+VerificationCode ||--|| Seller
+
+' REPORT
+SellerReport ||--|| Seller
+
+@enduml

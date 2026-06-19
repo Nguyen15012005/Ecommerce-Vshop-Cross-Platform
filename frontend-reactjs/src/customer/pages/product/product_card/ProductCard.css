@@ -1,0 +1,218 @@
+/* ================= ROOT ================= */
+.product-card {
+  width: 100%;
+  height: 100%;
+  font-family: "Inter", sans-serif;
+}
+
+/* ================= CARD ================= */
+.card {
+  width: 100%;
+  height: 100%;
+  min-height: 470px;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* ================= IMAGE ================= */
+.card-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3.5 / 4;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.card-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+
+/* ================= BADGE ================= */
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: linear-gradient(135deg, #ff4d4f, #ff7a45);
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  z-index: 2;
+}
+
+/* ================= OVERLAY ================= */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.product-card:hover .overlay {
+  opacity: 1;
+}
+
+/* ================= ACTIONS ================= */
+.actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: 0.3s;
+  z-index: 3;
+}
+
+.product-card:hover .actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.icon-btn {
+  background: white !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.icon-btn.favorite svg {
+  color: #ff4d4f;
+}
+
+.icon-btn.comment svg {
+  color: #1890ff;
+}
+
+/* ================= INDICATOR ================= */
+.indicator {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 3;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.dot.active {
+  background: white;
+}
+
+/* ================= INFO ================= */
+.info {
+  padding: 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ================= TEXT CLAMP ================= */
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+  line-height: 1.3;
+  min-height: 36px;
+  max-height: 36px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.desc {
+  font-size: 12.5px;
+  color: #666;
+  line-height: 1.4;
+  min-height: 35px;
+  max-height: 35px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ================= PRICE ================= */
+.price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.new {
+  color: #ff4d4f;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.old {
+  text-decoration: line-through;
+  color: #aaa;
+  font-size: 12px;
+}
+
+/* ================= ADD TO CART ================= */
+.add-btn {
+  margin-top: 8px !important;
+  border-radius: 10px !important;
+  background: linear-gradient(135deg, #ff4d4f, #ff7a45) !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  transition: 0.3s;
+}
+
+.add-btn:hover {
+  opacity: 0.9;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 640px) {
+  .card {
+    min-height: 430px;
+  }
+
+  .title {
+    font-size: 13.5px;
+  }
+
+  .desc {
+    font-size: 12px;
+  }
+
+  .new {
+    font-size: 14px;
+  }
+}
