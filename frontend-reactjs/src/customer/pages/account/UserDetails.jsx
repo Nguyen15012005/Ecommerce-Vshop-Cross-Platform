@@ -18,6 +18,8 @@ const UserDetails = () => {
       <div className="mb-6 flex flex-col gap-5 rounded-[24px] border border-[#F2E8D7] bg-gradient-to-r from-[#FFFDF8] to-[#FAF5EA] p-5 shadow-[0_10px_35px_rgba(201,169,110,0.10)] lg:flex-row lg:items-center lg:justify-between">
         <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
           <Avatar
+            src={user?.avatar || ""}
+            alt={user?.fullName}
             sx={{
               width: 84,
               height: 84,
@@ -27,7 +29,7 @@ const UserDetails = () => {
                 "linear-gradient(135deg, #D6B57A 0%, #C9A96E 50%, #B88A44 100%)",
             }}
           >
-            {user?.fullName?.charAt(0)?.toUpperCase() || "U"}
+            {!user?.avatar && (user?.fullName?.charAt(0)?.toUpperCase() || "U")}
           </Avatar>
 
           <div>

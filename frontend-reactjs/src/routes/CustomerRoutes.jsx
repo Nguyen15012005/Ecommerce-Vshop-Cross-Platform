@@ -11,9 +11,6 @@ import Cart from "../customer/pages/cart/Cart";
 import Checkout from "../customer/pages/checkout/Checkout";
 import Payment from "../customer/pages/checkout/Payment";
 import Review from "../customer/pages/review/Review";
-import SellerLoginPage from "../seller/pages/auth/SellerLoginPage";
-import SellerRegisterPage from "../seller/pages/auth/SellerRegisterPage";
-import VerifySellerPage from "../seller/pages/auth/VerifySellerPage";
 import Wishlist from "../customer/pages/wishlist/Wishlist";
 
 const CustomerLayout = ({ children }) => {
@@ -52,7 +49,7 @@ export const customerRoutes = [
     ),
   },
   {
-    path: "/product-detail/:id",
+    path: "/product-details/:categoryId/:name/:productId",
     element: (
       <CustomerLayout>
         <ProductDetail />
@@ -60,7 +57,7 @@ export const customerRoutes = [
     ),
   },
   {
-    path: "/product-list",
+    path: "/products/:category",
     element: (
       <CustomerLayout>
         <Product />
@@ -100,7 +97,7 @@ export const customerRoutes = [
     ),
   },
   {
-    path: "/product/:id/reviews",
+    path: "/reviews/:productId",
     element: (
       <CustomerLayout>
         <Review />
@@ -114,17 +111,5 @@ export const customerRoutes = [
         <Wishlist />
       </CustomerLayout>
     ),
-  },
-  {
-    path: "/seller/login",
-    element: (<CustomerLayout><SellerLoginPage /></CustomerLayout>),
-  },
-  {
-    path: "/seller/register",
-    element: (<CustomerLayout><SellerRegisterPage /></CustomerLayout>),
-  },
-  {
-    path: "/verify-seller/:otp",
-    element: (<CustomerLayout><VerifySellerPage /></CustomerLayout>),
   },
 ];

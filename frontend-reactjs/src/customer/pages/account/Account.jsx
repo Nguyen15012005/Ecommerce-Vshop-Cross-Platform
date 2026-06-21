@@ -1,4 +1,4 @@
-import { Divider } from "@mui/material";
+import { Avatar, Divider } from "@mui/material";
 import { IoLogOut } from "react-icons/io5";
 import {
   FaUser,
@@ -14,7 +14,6 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 import Order from "./Order";
 import SavedCards from "./SavedCards";
 import UserDetails from "./UserDetails";
@@ -63,7 +62,7 @@ const Account = () => {
         <div className="flex flex-col gap-4 p-5 sm:p-6 lg:flex-row lg:items-center lg:justify-between lg:p-8">
           <div>
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#B88A44]">
-              My Account
+              Quản lý tài khoản
             </p>
 
             <h1 className="text-2xl font-bold tracking-tight text-[#3B2B12] sm:text-3xl">
@@ -75,9 +74,21 @@ const Account = () => {
             </p>
           </div>
 
-          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#D6B57A] via-[#C9A96E] to-[#B88A44] text-xl font-bold text-white shadow-[0_10px_24px_rgba(201,169,110,0.35)]">
+          <Avatar
+            src={user?.avatar || undefined}
+            alt={user?.fullName}
+            sx={{
+              width: 56,
+              height: 56,
+              fontSize: 24,
+              fontWeight: 700,
+              background:
+                "linear-gradient(135deg, #D6B57A 0%, #C9A96E 50%, #B88A44 100%)",
+              boxShadow: "0 10px 24px rgba(201,169,110,0.35)",
+            }}
+          >
             {user?.fullName?.charAt(0)?.toUpperCase() || "U"}
-          </div>
+          </Avatar>
         </div>
 
         <Divider sx={{ borderColor: "#EEE4D2" }} />

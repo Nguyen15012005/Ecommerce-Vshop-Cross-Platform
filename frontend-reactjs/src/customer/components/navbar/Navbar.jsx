@@ -236,6 +236,8 @@ const Navbar = () => {
                     className="normal-case flex items-center gap-2 text-[#3B2B12]"
                   >
                     <Avatar
+                      src={user?.avatar || undefined}
+                      alt={user?.fullName}
                       sx={{
                         width: 34,
                         height: 34,

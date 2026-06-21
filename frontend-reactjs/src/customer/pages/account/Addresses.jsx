@@ -37,6 +37,15 @@ const addresses = [
     state: "Hồ Chí Minh",
     pinCode: "700000",
     mobile: "0911 222 333",
+  },{
+    id: 2,
+    name: "Nguyễn Nam Trung Nguyên",
+    address: "25 Lê Văn Việt",
+    locality: "Hiệp Phú",
+    city: "Thủ Đức",
+    state: "Hồ Chí Minh",
+    pinCode: "700000",
+    mobile: "0911 222 333",
   },
 ];
 
@@ -61,7 +70,7 @@ const Addresses = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-1">
         {addresses.map((item) => (
           <UserAddressCard key={item.id} item={item} />
         ))}

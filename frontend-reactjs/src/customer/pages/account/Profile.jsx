@@ -13,6 +13,7 @@ import UserDetails from "./UserDetails";
 import SavedCards from "./SavedCards";
 import OrderDetails from "./OrderDetails";
 import Addresses from "./Addresses";
+import { useSelector } from "react-redux";
 
 const menu = [
   { name: "Hồ sơ", path: "/account/profile", icon: <FaUser /> },
@@ -29,10 +30,7 @@ const menu = [
 const Profile = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
-  const user = {
-    fullName: "Nguyễn Nam Trung Nguyên",
-  };
+  const { profile: user } = useSelector((state) => state.user);
 
   const handleClick = (item) => {
     navigate(item.path);

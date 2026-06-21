@@ -2,10 +2,9 @@ import React from "react";
 import { useRoutes } from "react-router-dom";
 
 import { customerRoutes } from "./CustomerRoutes";
-import { sellerRoutes } from "./SellerRoutes";
 
 const AppRoutes = () => {
-  const routing = useRoutes([...customerRoutes, ...sellerRoutes]);
+  const routing = useRoutes([...customerRoutes]);
 
   return routing;
 };
